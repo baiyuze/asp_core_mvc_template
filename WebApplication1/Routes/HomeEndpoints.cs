@@ -6,8 +6,8 @@ public static class HomeRouter
 {
     public static RouteGroupBuilder RouteHomeEndpoints(this RouteGroupBuilder router)
     {
-        var homeHandle = new HomeHandle();
-        router.MapGet("/test", homeHandle.GetHome);
+
+        router.MapGet("/test", (HomeHandle homeHandle) => homeHandle.GetHome());
         return router;
     }
 }
