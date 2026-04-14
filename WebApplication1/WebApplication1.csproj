@@ -7,12 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="10.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.2" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Db\" />
     <Folder Include="Dtos\" />
+    <Folder Include="Modules\VoiceModule\" />
     <Folder Include="Services\" />
   </ItemGroup>
 

@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Mvc;
 using WebApplication1.Infrastructure;
 
-namespace WebApplication1.Controller;
+namespace WebApplication1.Modules.HomeModule;
 
-[ApiController]
+
 public class HomeHandle: IScopedHandle
 {
-    public string GetHome()
+    public string GetHome(HttpContext context)
     {
         return "Home";
     }
