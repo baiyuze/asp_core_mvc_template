@@ -10,9 +10,9 @@ builder.Services.AddInfrastructureAuth(builder.Configuration);
 
 
 var app = builder.Build();
+app.UseStatusCodePages((context) => Message.DefineMessage(context));
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseStatusCodePages(( context) => Message.DefineMessage(context));
 
 app.MapGroup("/api/v1").MapRouteGroups();
 app.Run();

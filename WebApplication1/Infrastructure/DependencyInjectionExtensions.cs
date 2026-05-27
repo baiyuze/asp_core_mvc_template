@@ -16,7 +16,7 @@ public static class DependencyInjectionExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration?  configuration = null)
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration? configuration = null)
     {
         var types = Assembly.GetExecutingAssembly().GetTypes();
         var typeHandleModule = types.Where(type => typeof(IScopedService).IsAssignableFrom(type) && type.IsClass && !type.IsAbstract);
@@ -25,7 +25,7 @@ public static class DependencyInjectionExtensions
             services.AddScoped(type);
             Console.WriteLine($"[Build] Registered Handle: {type.Name}");
         }
-        
+
         var typeServicesModule = types.Where(type => typeof(IScopedHandle).IsAssignableFrom(type) && type.IsClass && !type.IsAbstract);
         foreach (var type in typeServicesModule)
         {
@@ -33,9 +33,19 @@ public static class DependencyInjectionExtensions
             Console.WriteLine($"[Build] Registered Service: {type.Name}");
         }
 
+        // 注入依赖
+
+        services.AddScoped<ApiResponseFactory>();
+        // 复合写法，语法糖
+        // services.Add(new ServiceDescriptor(
+        //     typeof(ApiResponseFactory),
+        //     typeof(ApiResponseFactory),
+        //     ServiceLifetime.Scoped
+        // ));
+
         return services;
     }
-    
+
 
 }
 
